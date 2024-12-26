@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--izh-->
+    <link rel="shortcut icon" href="tugas/kotak.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icazz</title>
+    <title>Game tebak angka</title>
+</head>
+<body>
+    <center>
+        <button onclick="tebak()">start</button>
+        <br>
+        <p id="hasil"></p>
+        <p id="mistake"></p>
+        
+    </center>
+    <script>
+        var point = 0;
+        var mis = 0;
+        function tebak(){
+            var compt = Math.floor(Math.random()*11);
+            var chance = 3;
+            alert('tebak angka 0-10' + '\nkamu punya ' + chance + ' kesempatan');
+            chance--;
+
+            while (chance >= 0 ) {
+            var user = prompt('masukan angka tebakan');
+                if (user == compt) {
+                    alert('TEBAKAN ANDA BENAR'+'\nANGKA YANG DICARI ' + compt);
+                    point++;
+                    break;
+                } else if (chance == 0) {
+                    alert('kesempatan anda telah habis ');
+                    mis++;
+                    break;
+                }else if (user > compt ) {
+                    alert('TEBAKAN ANDA TERLALU TINGGI' + '\nkamu punya ' + chance + ' kesempatan');
+                    chance--;
+                } else if (user < compt) {
+                    alert('TEBAKAN ANDA TERLALU RENDAH' + '\nkamu punya ' + chance + ' kesempatan');
+                    chance--;
+                }
+            }
+            var res = point + mis;
+            if (res == 5){
+                if (point > mis){
+                    document.write("<center><h1>YOU WIN!</h1></center><br>");
+                    document.write("<center><p>Score  : " + point + "</p></center>");
+                    document.write("<center><p>Mistake: " + mis + "</p></center>");
+                } else {
+                    document.write("<center><h1>YOU LOSE :(</h1></center><br>");
+                    document.write("<center><p>Score  : " + point + "</p></center>");
+                    document.write("<center><p>Mistake: " + mis + "</p></center>");
+                }
+            }
+            var score = point;
+            document.getElementById("hasil").innerHTML = 'score: ' + score;
+            document.getElementById("mistake").innerHTML = 'mistake: ' + mis;
+        }
+        
+    </script>
+    
+
+</body>
+</html>
